@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# This script takes an SVG produced by draw.io and changes details about it
+# (and its style) in order to make it appear better on my website. It
+# essentially a find and replace and is prone to breaking for many reason, I
+# recommend you do not use this.
+#
+
+# store svg contents
+read svg
+
+# set width to fill container
+svg=`echo $svg | sed s/version=\"1\.1\".*viewBox/version=\"1\.1\"\ width=\"100%\"\ viewBox/g`
+# use jet brain mono font
+svg=`echo $svg | sed s/Helvetica/jbm/g`
+# use flex for text container to vertically align text in middle
+svg=`echo $svg | sed s/box-sizing:\ border-box\;/display:\ flex\;\ box-sizing:\ border=box/g`
+
+echo $svg
